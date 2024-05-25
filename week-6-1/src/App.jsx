@@ -1,36 +1,53 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
+  const [todos, setTodos] = useState([
+    {
+      id: 1,
+      title: "Go to Gym",
+      description: "Go to Gym from 5-7"
+    },{
+      id: 2,
+      title: "Go Study",
+      description: "Study cause you ain't employed"
+    },{
+      id: 3,
+      title: "Go play sports",
+      description: "Play sports cause you fat as f..."
+    }
+  ])
+
+  function addTodo(){
+    const newTodo = []
+    for(let i=0; i<todos.length; i++){
+      newTodo.push(todos[i])
+    }
+    newTodo.push({
+      id: 4,
+      title: "Go play games",
+      description: "Relax your mind and play some games"
+    })
+
+    setTodos(newTodo)
+  }
 
   return (
     <>
-      <UpdateHeader></UpdateHeader>
-      <Header title="Header1"></Header>
-      <Header title="Header2"></Header>
-      <Header title="Header3"></Header>
-      <Header title="Header4"></Header>
+      <button onClick={addTodo}>Add a Todo</button>
+      {todos.map(todo => <Todo title={todo.title} description={todo.description} />)}
     </>
   )
 }
 
-function UpdateHeader(){
-  const [header, setHeader] = useState("My name is Kashyap")
-  function changeHeader(){
-    setHeader("My name is Praneet")
-  }
-
+function Todo({title, description}){
   return <div>
-    <button onClick={changeHeader}>Update Header</button>
-    <Header title={header}></Header>
-  </div>
-}
-
-function Header({title}){
-  return <div>
-    {title}
+    <h1>
+      {title}
+    </h1>
+    <h4>
+      {description}
+    </h4>
   </div>
 }
 
