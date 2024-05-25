@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import './App.css'
 
+let counter=4
+
 function App() {
   const [todos, setTodos] = useState([
     {
@@ -24,7 +26,7 @@ function App() {
       newTodo.push(todos[i])
     }
     newTodo.push({
-      id: 4,
+      id: counter++,
       title: "Go play games",
       description: "Relax your mind and play some games"
     })
@@ -35,7 +37,7 @@ function App() {
   return (
     <>
       <button onClick={addTodo}>Add a Todo</button>
-      {todos.map(todo => <Todo title={todo.title} description={todo.description} />)}
+      {todos.map(todo => <Todo key={todo.id} title={todo.title} description={todo.description} />)}
     </>
   )
 }
